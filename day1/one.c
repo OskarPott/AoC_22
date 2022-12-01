@@ -19,7 +19,7 @@ int main(void)
 
     while ((read = getline(&line, &len, fp)) != -1) {
         sum = sum + atoi(line);
-        if (line[0] == 10 || feof(fp)){
+        if (line[0] == '\n' || feof(fp)){
             if (sum > max) {
                 max = sum;
             }

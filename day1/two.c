@@ -24,7 +24,7 @@ int main(void)
 
     while ((read = getline(&line, &len, fp)) != -1) {
         sum = sum + atoi(line);
-        if (line[0] == 10 || feof(fp)){
+        if (line[0] == '\n' || feof(fp)){
             // If sum is bigger than the smallest of one, two, three. Change sum to the smallest.
             if(one < two && one < three)
             {
