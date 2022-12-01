@@ -24,27 +24,22 @@ int main(void)
 
     while ((read = getline(&line, &len, fp)) != -1) {
         sum = sum + atoi(line);
-        if (line[0] == 10){
-
+        if (line[0] == 10 || feof(fp)){
             // If sum is bigger than the smallest of one, two, three. Change sum to the smallest.
-
             if(one < two && one < three)
             {
-                // printf("%d is smallest",one);
                 if (sum > one) {
                     one = sum;
                 }
             }
             else if(two < three)
             {
-                // printf("%d is smallest",two);
                 if (sum > two) {
                     two = sum;
                 }
             }
             else
             {
-                // printf("%d is smallest",three);
                 if (sum > three) {
                     three = sum;
                 }
@@ -53,30 +48,7 @@ int main(void)
         }
     }
 
-    if(one < two && one < three)
-    {
-        // printf("%d is smallest",one);
-        if (sum > one) {
-            one = sum;
-        }
-    }
-    else if(two < three)
-    {
-        // printf("%d is smallest",two);
-        if (sum > two) {
-            two = sum;
-        }
-    }
-    else
-    {
-        // printf("%d is smallest",three);
-        if (sum > three) {
-            three = sum;
-        }
-    }	
-
     int total = one + two + three;
-
 
     printf("%d", total);
 

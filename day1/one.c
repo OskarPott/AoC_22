@@ -19,15 +19,12 @@ int main(void)
 
     while ((read = getline(&line, &len, fp)) != -1) {
         sum = sum + atoi(line);
-        if (line[0] == 10){
+        if (line[0] == 10 || feof(fp)){
             if (sum > max) {
                 max = sum;
             }
             sum = 0;
         }
-    }
-    if (sum > max){
-        max = sum;
     }
 
     printf("%d", max);
