@@ -2,9 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+double cpu_time_used;
+clock_t start, end;
 
 int main(void)
 {
+    start = clock();
     FILE * fp;
     char * line = NULL;
     size_t len = 0;
@@ -28,6 +32,9 @@ int main(void)
     }
 
     printf("%d", max);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("\nCpu time: %f\n", cpu_time_used);
 
     fclose(fp);
     if (line)
