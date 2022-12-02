@@ -33,37 +33,55 @@ int main(void)
 
     int i;
     int j;
-    int k;
+    int set[53];
+    int set2[53];
+    int set3[53];
+
+    for(i = 0; i < 53; i++) {
+        set[i] = 0;
+        set2[i] = 0;
+        set3[i] = 0;
+    }
+
+
 
     while ((read = getline(&line, &len, fp)) != -1) {
+        curr_line++;
         int end = strlen(line);
-        if (curr_line == 0) {
-            line2 = strdup(line);
-            end2 = strlen(line2);
-        }
-        else if (curr_line == 1) {
-            line3 = strdup(line);
-            end3 = strlen(line3);
-        }
-        else {
-            for (i = 0; i < end; i++){
-                for (j = 0; j < end2; j++){
-                    for (k = 0; k < end3; k++){
-                        if (line[i] == line2[j] && line[i] == line3[k]) {
-                            if (line[i] < 97) {
-                                sum = sum + line[i] - 38;
-                            } else {
-                                sum = sum + line[i] - 96;
-                            }
-                            goto stop;
-                        }
-                    }
+        for (i = 0; i < end; i++) {
+            int index;
+            if (line[i] < 97) {
+                index = line[i] - 38;
+            } else {
+                index = line[i] - 96;
+            }
+
+            // This part is not nice
+            if (curr_line % 3 == 1) {
+                set[index] = 1;
+            }
+            else if (curr_line % 3 == 2) {
+                if (set[index] == 1) {
+                    set[index] = 2;
                 }
             }
-            stop:;
-            curr_line = -1;
+            else {
+                if (set[index] == 2) {
+                    set[index] = 3;
+                }
+            }
+
+
+
         }
-        curr_line++;
+        if (curr_line % 3 == 0) {
+            for (j = 0; j < 53; j++) {
+                if (set[j] == 3) {
+                    sum = sum + j;
+                }
+                set[j] = 0;
+            }
+        }
     }
 
     printf("%d", sum);

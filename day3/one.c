@@ -31,7 +31,6 @@ int main(void)
         int end = strlen(line);
         int i;
         int j;
-        // printf("%d\n", sum);    
         for (i = 0; i < mid; i++) {
             for (j = mid; j < end; j++) {
                 if (line[i] == line[j]){ 
@@ -45,7 +44,6 @@ int main(void)
             }
         }
         stop:;
-        // printf("Length of string: %ld\n", strlen(line));
     }
 
     printf("%d", sum);
