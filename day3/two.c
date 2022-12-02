@@ -26,10 +26,6 @@ int main(void)
 
     int sum = 0;
     int curr_line = 0;
-    char * line2 = NULL;
-    int end2;
-    char * line3 = NULL;
-    int end3;
 
     int i;
     int j;
@@ -43,12 +39,10 @@ int main(void)
         set3[i] = 0;
     }
 
-
-
     while ((read = getline(&line, &len, fp)) != -1) {
         curr_line++;
         int end = strlen(line);
-        for (i = 0; i < end; i++) {
+        for (i = 0; i < end-1; i++) {
             int index;
             if (line[i] < 97) {
                 index = line[i] - 38;
@@ -56,35 +50,31 @@ int main(void)
                 index = line[i] - 96;
             }
 
-            // This part is not nice
             if (curr_line % 3 == 1) {
                 set[index] = 1;
             }
             else if (curr_line % 3 == 2) {
-                if (set[index] == 1) {
-                    set[index] = 2;
-                }
+                set2[index] = 1;
             }
             else {
-                if (set[index] == 2) {
-                    set[index] = 3;
-                }
+                set3[index] = 1;
             }
-
-
-
         }
+
         if (curr_line % 3 == 0) {
             for (j = 0; j < 53; j++) {
-                if (set[j] == 3) {
+                if (set[j] == 1 && set2[j] == 1 && set3[j] == 1) {
                     sum = sum + j;
                 }
                 set[j] = 0;
+                set2[j] = 0;
+                set3[j] = 0;
             }
         }
     }
 
     printf("%d", sum);
+
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("\nCpu time: %f\n", cpu_time_used);
