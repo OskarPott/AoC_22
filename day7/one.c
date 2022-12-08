@@ -45,9 +45,9 @@ int calc(node *node) {
     if (sum <= 100000){
         answer += sum;
     }
-    if (sum >= total_space - 40000000 && (sum < answer2 || answer2 == 0) && total_space != 0) {
-        answer2 = sum;
-    }
+    // if (sum >= total_space - 40000000 && (sum < answer2 || answer2 == 0) && total_space != 0) {
+    //     answer2 = sum;
+    // }
     return sum;
 }
 
@@ -93,8 +93,8 @@ int main(void)
 
     total_space = calc(root);
     printf("Total filesize: %d", total_space);
-    calc(root);
-    printf("\nAll directories and files less than 100 000 combined:\n%d", answer2);
+    // calc(root);
+    printf("\nAll directories and files less than 100 000 combined:\n%d", answer);
 
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
